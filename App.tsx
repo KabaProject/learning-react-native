@@ -5,7 +5,7 @@
  * @format
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -18,29 +18,27 @@ import {
 
 
 function App(): JSX.Element {
+
+  const [text, setText] = useState('')
+  
+  const format = (value: String): String => {
+    return value.split(' ').map(w => w && '🤣').join('')
+  }
+
   return (
-    <ScrollView>
-      <Text>Some Text</Text>
-      <View>
-        <Text>
-          Some more text
-        </Text>
-        <Image
-          source={{
-            uri: 'https://reactnative.dev/docs/assets/p_cat2.png'
-          }}
-          style={{width: 200, height: 200}}
-        />
-      </View>
+    <View style={{padding: 10}}>
       <TextInput
-        style={{
-          height: 40,
-          borderColor: 'gray',
-          borderWidth: 1
-        }}
-        defaultValue='you can type in me'
+        style={{height: 40}}
+        placeholder='Type here dude'
+        onChangeText={value => setText(value)}
+        defaultValue={text}
       />
-    </ScrollView>
+      <Text style={{padding: 10, fontSize: 42}}>
+        {
+          format(text)
+        }
+      </Text>
+    </View>
   );
 }
 
