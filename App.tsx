@@ -13,35 +13,55 @@ import {
   Text,
   View,
   Image,
-  TextInput
+  TextInput,
+  FlatList
 } from 'react-native';
 
 
 function App(): JSX.Element {
 
-  const [text, setText] = useState('')
-  
-  const format = (value: String): String => {
-    return value.split(' ').map(w => w && '🤣').join('')
-  }
-
   return (
-    <View style={{padding: 10}}>
-      <TextInput
-        style={{height: 40}}
-        placeholder='Type here dude'
-        onChangeText={value => setText(value)}
-        defaultValue={text}
+    <View style={st.container}>
+      <FlatList
+        data={[{
+          name: 'Name 1'
+        },{
+          name: 'Name 2'
+        },{
+          name: 'Name 3'
+        },{
+          name: 'Name 4'
+        },{
+          name: 'Name 5'
+        },{
+          name: 'Name 6'
+        },{
+          name: 'Name 7'
+        },{
+          name: 'Name 8'
+        },{
+          name: 'Name 9'
+        },{
+          name: 'Name 10'
+        },{
+          name: 'Name 11'
+        }]}
+        renderItem={({item}): JSX.Element => <Text style={st.item}>{item.name}</Text>}
       />
-      <Text style={{padding: 10, fontSize: 42}}>
-        {
-          format(text)
-        }
-      </Text>
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const st = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 22
+  },
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44
+  }
+});
 
 export default App;
